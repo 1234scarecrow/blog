@@ -17,6 +17,9 @@
           <p>
             <a href="notes/markdown.html">Markdown 基本语法</a>
           </p>
+          <p>
+            <a href="notes/markdown.html">{{info.data[0].tname}}</a>
+          </p>
         </div>
         <!-- 收藏 -->
         <div>
@@ -66,7 +69,7 @@
           <span>
             <a href="http://www.zfrontier.com/board/2" target="_blank">外设</a>
           </span>
-          
+
           <span>
             <a href="http://www.zfrontier.com/board/3" target="_blank">桌面</a>
           </span>
@@ -100,14 +103,27 @@
   import Header from "@/components/Header.vue"
   import Footer from "@/components/Footer.vue"
   // @ 是 /src 的别名
-  export default{
-    data:()=>{
-      return{
-      
+  export default {
+    data: () => {
+      return {
+        teachers: [],
+        info:{
+          data:[
+            {tname:""}
+          ]
+        }
       }
 
     },
-    components:{
+    mounted() {
+      // 当前组件挂在完成后, 异步请求API接口数据
+      this.$http.get("/teacher/list")
+      .then(res=>{
+        console.log(res)
+        this.info=res.data
+      })
+    },
+    components: {
       Header,
       Footer
     },
