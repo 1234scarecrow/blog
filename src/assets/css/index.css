@@ -188,6 +188,10 @@ header{
 .content p:last-child{
   margin-bottom: 0; 
 }
+.content span{
+  float: right;
+  color:rgb(110, 110, 110);
+}
 
 /* 脚部 */
 footer{

@@ -62,6 +62,22 @@ const routes = [
     meta:{
       title:"MD语法-1234稻草人"
     }
+  },
+  // addnote 新增笔记路由地址
+  {
+    path:"/addnote",
+    component:()=>import("../views/Addnote.vue"),
+    meta:{
+      title:"添加笔记-1234稻草人"
+    }
+  },
+  // addmood 新增心情路由地址
+  {
+    path:"/addmood",
+    component:()=>import("../views/Addmood.vue"),
+    meta:{
+      title:"添加心情-1234稻草人"
+    }
   }
 ]
 

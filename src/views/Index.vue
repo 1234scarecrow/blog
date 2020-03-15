@@ -14,30 +14,26 @@
         <!-- 笔记 -->
         <div>
           <h1>笔记</h1>
-          <p>
+          <!-- <p>
             <a href="notes/markdown.html">Markdown 基本语法</a>
+            <span>2020-2-20</span>
+          </p> -->
+          <p v-for="note in notes" :key=note.nid>
+            <a href="#">{{note.title}}</a>
+            <span>{{note.pub_time}}</span>
           </p>
-          <p>
+          <!-- <p>
             <a href="notes/markdown.html">{{info.data[0].tname}}</a>
-          </p>
-        </div>
-        <!-- 收藏 -->
-        <div>
-          <h1>收藏</h1>
-          <p>
-            <a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank">Git教程</a>
-          </p>
-          <p>
-            <a href="https://www.jianshu.com/p/0ae3e3bb3082" target="_blank">vue项目开发流程</a>
-          </p>
-          <p>
-            <a href="http://es6.ruanyifeng.com/" target="_blank">ECMAScript 6 入门</a>
-          </p>
+          </p> -->
         </div>
         <!-- 随笔 -->
         <div>
           <h1>随笔</h1>
-          <p>
+          <p v-for="jotting in jottings" :key=jotting.jid>
+            <a href="">{{jotting.title}}</a>
+            <span>{{jotting.pub_time}}</span>
+          </p>
+          <!-- <p>
             <a href="">Iconfont-阿里巴巴矢量图标库的使用</a>
           </p>
           <p>
@@ -45,6 +41,17 @@
           </p>
           <p>
             <a href="">Iconfont-阿里巴巴矢量图标库的使用</a>
+          </p>
+          <p>
+            <a href=""></a>
+            <span></span>
+          </p> -->
+        </div>
+        <!-- 收藏 -->
+        <div>
+          <h1>收藏</h1>
+          <p v-for="collect in collects" :key=collect.cid>
+            <a :href="collect.curl" :key=collect.cid>{{collect.title}}</a>
           </p>
         </div>
       </div>
@@ -106,22 +113,37 @@
   export default {
     data: () => {
       return {
-        teachers: [],
-        info:{
-          data:[
-            {tname:""}
-          ]
-        }
+        collects: [
+          { cid: 0, title: "", curl: "" }
+        ],
+        notes: [
+          { nid: 0, title: "", pub_time: "" }
+        ],
+        jottings: [
+          { jid: 0, title: "", pub_time: "" }
+        ]
       }
 
     },
     mounted() {
       // 当前组件挂在完成后, 异步请求API接口数据
-      this.$http.get("/teacher/list")
-      .then(res=>{
-        console.log(res)
-        this.info=res.data
-      })
+      this.$http.get("/collect")
+        .then(res => {
+          console.log(res)
+          console.log(res.data.data)
+          this.collects = res.data.data
+        }),
+        this.$http.get("/note")
+          .then(res => {
+            console.log(res)
+            console.log(res.data.data)
+            this.notes = res.data.data
+          }),
+        this.$http.get("/jotting")
+          .then(res => {
+            console.log(res.data.data)
+            this.jottings = res.data.data
+          })
     },
     components: {
       Header,
