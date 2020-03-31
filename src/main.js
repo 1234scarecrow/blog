@@ -11,7 +11,7 @@ import "./assets/css/animate.css"
 /* 项目的运行配置 */
 Vue.config.productionTip = false
 
-axios.defaults.baseURL='http://localhost:80'
+axios.defaults.baseURL='http://45.76.151.126:8081'
 // axios.defaults.baseURL='http://127.0.0.1:8080'
 // axios.defaults.baseURL = 'http://192.168.31.200:8080'
 axios.defaults.withCredentials = true  // Axios每次请求都携带身份认证信息connect.sid
