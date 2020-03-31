@@ -16,10 +16,10 @@ module.exports = {
   devServer: {
     disableHostCheck: true,
     // open: process.platform === 'vue',
-    // host: '192.168.31.200',
+    host: '127.0.0.1',
     // port: 8081,
     // https: false,
-    // hotOnly: false,
+    hotOnly: false,
     proxy: { // 设置代理
       '/api':{
         target:"http://192.168.31.200:8080",
